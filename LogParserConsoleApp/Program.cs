@@ -15,6 +15,9 @@ namespace LogParserConsoleApp
     {
         private readonly static char separatorFlag = ' ';
         private readonly static char DescriptionStarterFlag = '#';
+        private readonly static string BlackListIpInitial = "207.114";
+        private readonly static int StandardPortNumber = 80;
+
         /// <summary>
         /// Main entry method.
         /// </summary>
@@ -110,7 +113,7 @@ namespace LogParserConsoleApp
         /// <returns>returned list of IngestedLogs.</returns>
         public static List<IngestedLog> GetNumberOfRequestsPerIpAddress(List<RequestMetaData> requestsMetaData)
         {
-            return requestsMetaData.GroupBy(
+            return requestsMetaData.Where(x => !x.ClientIp.StartsWith(BlackListIpInitial) && x.Port == StandardPortNumber).GroupBy(
                         r => r.ClientIp,
                         r => r,
                         (key, g) =>
