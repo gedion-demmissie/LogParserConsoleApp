@@ -44,19 +44,19 @@ namespace LogParserConsoleApp
         /// <summary>
         /// FindCurrentDirectory method.
         /// </summary>
-        /// <param name="di"></param>
+        /// <param name="directoryInfo">Instance of DirectoryInfo, holding the directory structure.</param>
         /// <returns>Fully qualified name of the current Directory where this source code is residing.</returns>
-        public static string FindCurrentDirectory(DirectoryInfo di)
+        public static string FindCurrentDirectory(DirectoryInfo directoryInfo)
         {
-            if (di.Parent != null)
+            if (directoryInfo != null && directoryInfo.Parent != null)
             {
-                if (di.Parent.Name == nameof(LogParserConsoleApp))
+                if (directoryInfo.Parent.Name == nameof(LogParserConsoleApp))
                 {
-                    return di.Parent.FullName;
+                    return directoryInfo.Parent.FullName;
                 }
                 else
                 {
-                    return FindCurrentDirectory(di.Parent);
+                    return FindCurrentDirectory(directoryInfo.Parent);
                 }
             }
             else
