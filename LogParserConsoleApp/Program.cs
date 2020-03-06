@@ -14,9 +14,9 @@ namespace LogParserConsoleApp
     class Program
     {
         private readonly static char separatorFlag = ' ';
-        private readonly static char DescriptionStarterFlag = '#';
-        private readonly static string BlackListIpInitial = "207.114";
-        private readonly static int StandardPortNumber = 80;
+        private readonly static char descriptionStarterFlag = '#';
+        private readonly static string blackListIpInitial = "207.114";
+        private readonly static int standardPortNumber = 80;
 
         /// <summary>
         /// Main entry method.
@@ -77,7 +77,7 @@ namespace LogParserConsoleApp
 
             while ((contentInaLine = reader.ReadLine()) != null)
             {
-                if (!contentInaLine.StartsWith(DescriptionStarterFlag))
+                if (!contentInaLine.StartsWith(descriptionStarterFlag))
                 {
                     contentsInfile.Add(contentInaLine);
                 }
@@ -113,7 +113,7 @@ namespace LogParserConsoleApp
         /// <returns>returned list of IngestedLogs.</returns>
         public static List<IngestedLog> GetNumberOfRequestsPerIpAddress(List<RequestMetaData> requestsMetaData)
         {
-            return requestsMetaData.Where(x => !x.ClientIp.StartsWith(BlackListIpInitial) && x.Port == StandardPortNumber).GroupBy(
+            return requestsMetaData.Where(x => !x.ClientIp.StartsWith(blackListIpInitial) && x.Port == standardPortNumber).GroupBy(
                         r => r.ClientIp,
                         r => r,
                         (key, g) =>
