@@ -35,7 +35,7 @@ namespace LogParserConsoleApp
                 var ingestedLogs = GetNumberOfRequestsPerIpAddress(parsedLogToRequestsMetadata);
                 path = currentDirectory + @"\IngestedLogResults\report.csv";
                 GenerateCsvReport(ingestedLogs, path);
-                Console.WriteLine("Successfully generated Csv-Report and Saved it under  IngestesLogResults folder!");
+                Console.WriteLine("Successfully generated Csv-Report and Saved it under  IngestedLogResults folder!");
                 Console.ReadKey();
             }
 
